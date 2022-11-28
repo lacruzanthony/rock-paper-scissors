@@ -17,6 +17,7 @@ const myAppConfig = {
 Amplify.configure(myAppConfig);
 
 function App() {
+  // new comments.
   const [send, setSend] = useState("");
   const [received, setReceived] = useState("");
 
