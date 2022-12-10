@@ -1,68 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
-import * as subscriptions from "./graphql/subscriptions"; //codegen generated code
-import * as mutations from "./graphql/mutations"; //codegen generated code
-import GameForm from "./containers/GameForm";
-
-//AppSync endpoint settings
-const myAppConfig = {
-  aws_appsync_graphqlEndpoint:
-    "https://o2p2ci4cmjbshmr5vduge35vyi.appsync-api.us-east-1.amazonaws.com/graphql",
-  aws_appsync_region: "us-east-1",
-  aws_appsync_authenticationType: "API_KEY",
-  aws_appsync_apiKey: "da2-ydi6ww3vvjht5dxhlllsrxf6dm",
-};
-
-Amplify.configure(myAppConfig);
+import logo from "./logo.svg";
+import Match from "./components/Match";
 
 function App() {
-  // new comments.
-  const [send, setSend] = useState("");
-  const [channel, setChannel] = useState("141.12");
-  const [received, setReceived] = useState("");
-
-  //Define the channel name here
-  // let channel = "robots";
-  let data = "";
-
-  //Publish data to subscribed clients
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    const publish = await API.graphql(
-      graphqlOperation(mutations.publish2channel, { name: channel, data: send })
-    );
-    setSend("Enter valid JSON here... (use quotes for keys and values)");
-  }
-
-  useEffect(() => {
-    //Subscribe via WebSockets
-    const subscription = API.graphql(
-      graphqlOperation(subscriptions.subscribe2channel, { name: channel })
-    ).subscribe({
-      next: ({ provider, value }) => {
-        setReceived(value.data.subscribe2channel.data);
-      },
-      error: (error) => console.warn(error),
-    });
-    return () => subscription.unsubscribe();
-  }, [channel]);
-
-  if (received) {
-    data = JSON.parse(received);
-  }
-
-  //Display pushed data on browser
   return (
     <div className="App">
       <header className="App-header">
-        <p>Send/Push JSON to channel "{channel}"...</p>
-        <GameForm setChannel={setChannel} handleSubmit={handleSubmit} setSend={setSend} />
-        <button>Start Game</button>
-        <p>Subscribed/Listening to channel "{channel}"...</p>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <Match />
       </header>
     </div>
   );
