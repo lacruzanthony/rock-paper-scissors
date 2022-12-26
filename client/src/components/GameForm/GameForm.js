@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { getURLParam } from "../../utils";
+import { useParams } from 'react-router-dom';
 
 const GameForm = ({ handleSubmit, setSend, setChannel }) => {
-  const gameId = getURLParam('match')
+  const { matchId } = useParams()
 
-  const TEXT_BUTTON = gameId ? 'Join to match' : 'Create match'
+  const TEXT_BUTTON = matchId ? 'Join to match' : 'Create match'
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -19,7 +19,7 @@ const GameForm = ({ handleSubmit, setSend, setChannel }) => {
           onChange={(e) => setSend(e.target.value)}
         />
       </Form.Group>
-      {!gameId && (
+      {!matchId && (
         <Form.Group controlId="formRounds">
           <Form.Label id="rounds">Rounds</Form.Label>
           <Form.Control
@@ -27,24 +27,23 @@ const GameForm = ({ handleSubmit, setSend, setChannel }) => {
             name="rounds"
             htmlFor="rounds"
             type="number"
-          // onChange={(e) =>setSend(e.target.value)}
           />
         </Form.Group>
       )}
-      <Form.Group controlId="formGameID">
-        <Form.Label id="gameid">Game ID</Form.Label>
+      <Form.Group controlId="formMatchID">
+        <Form.Label id="matchId">Game ID</Form.Label>
         <Form.Control
           placeholder='141.12'
-          name="gameid"
-          htmlFor="gameid"
+          name="matchId"
+          htmlFor="matchId"
           type="text"
-          value={gameId ?? undefined}
-          disabled={gameId ?? false}
+          value={matchId ?? undefined}
+          disabled={matchId ?? false}
           onChange={(event) => setChannel(event.target.value)}
         />
       </Form.Group>
-      <input type='hidden' id="join-game" name="joinGame" value={gameId ? true : false} />
-      <Button variant={gameId ? 'success' : 'primary'} type="submit" >{TEXT_BUTTON}</Button>
+      <input type='hidden' id="join-game" name="joinGame" value={matchId ? true : false} />
+      <Button variant={matchId ? 'success' : 'primary'} type="submit" >{TEXT_BUTTON}</Button>
     </Form >
   )
 }
