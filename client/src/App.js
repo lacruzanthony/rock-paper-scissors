@@ -1,48 +1,11 @@
 import "./App.css";
 import logo from "./logo.svg";
-import Lobby from "./components/Lobby";
-import Layout from "./components/Layout";
-import ErrorPage from "./components/ErrorPage";
-import Match from "./components/Match";
-import GameForm from "./components/GameForm";
-import RockPaperSccissors from "./components/RockPaperSccissors";
+import routesConfig from "./routesConfig";
 import { Routes, Route } from "react-router-dom";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <Lobby />,
-      },
-      {
-        path: "match/:matchId/player1/:player1/rounds/:rounds",
-        element: <Lobby />,
-      },
-      {
-        path: "matching/player1/:player1/player2/:player2/secondPlayerJoined/:secondPlayerJoined",
-        element: <Match />,
-      },
-      {
-        path: "playing/player1/:player1/player2/:player2/rounds/:rounds/match/:matchId/isFromPlayer1/:isFromPlayer1",
-        element: <RockPaperSccissors />
-      },
-      {
-        path: "playing/player1/:player1/player2/:player2/rounds/:rounds/match/:matchId/",
-        element: <RockPaperSccissors />
-      }
-    ]
-  },
-  {
-    path: "match/:matchId/player1/:player1/rounds/:rounds",
-    element: <Lobby />,
-  },
-]);
+const router = createBrowserRouter(routesConfig);
 
 const App = () => <RouterProvider router={router} />
 

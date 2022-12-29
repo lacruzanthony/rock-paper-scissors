@@ -16,7 +16,7 @@ const myAppConfig = {
   "aws_appsync_graphqlEndpoint": "https://2dh4qsc66bgkle7lp2epzugrtq.appsync-api.us-east-1.amazonaws.com/graphql",
   "aws_appsync_region": "us-east-1",
   "aws_appsync_authenticationType": "API_KEY",
-  "aws_appsync_apiKey": "da2-qey557o6a5fkvlnhnqv6nq3wsm	",
+  "aws_appsync_apiKey": "da2-7fx77bogirgylbt2glfiz6ayly",
 };
 
 Amplify.configure(myAppConfig);
@@ -112,6 +112,7 @@ const Lobby = () => {
 
   return (
     <>
+      <h3 class="h3">Lobby</h3>
       {!startGame && matchURL && (
         <Alert variant="success">
           <Alert.Heading>Match created successfully</Alert.Heading>

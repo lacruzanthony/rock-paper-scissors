@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useParams } from 'react-router-dom';
 import { Outlet, Link } from 'react-router-dom';
 
-const GameForm = ({ handleSubmit, setSend, setChannel }) => {
+const Layout = ({ handleSubmit, setSend, setChannel }) => {
   return (
     <>
       <div id="sidebar">
@@ -50,4 +50,4 @@ const GameForm = ({ handleSubmit, setSend, setChannel }) => {
 }
 
 
-export default GameForm;
+export default Layout;
