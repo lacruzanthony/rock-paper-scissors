@@ -5,7 +5,6 @@ import './Match.css'
 const Match = ({ setStartGame, player1, player2, secondPlayerJoined }) => {
   const isSecondPlayer = !!player2
   const { matchId } = useParams()
-  debugger;
   if (secondPlayerJoined && !matchId) {
     return (
       <>
