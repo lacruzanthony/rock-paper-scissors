@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, createSearchParams } from 'react-router-dom';
 import Amplify, { API, graphqlOperation } from "aws-amplify";
+import awsconfig from "../../amplifyConfig"
 import * as subscriptions from "../../graphql/subscriptions"; //codegen generated code
 import * as mutations from "../../graphql/mutations"; //codegen generated code
 import * as queries from "../../graphql/queries"; //codegen generated code
@@ -10,16 +11,9 @@ import Match from "../Match"
 import GameForm from "../GameForm";
 import RockPaperSccissors from '../RockPaperSccissors';
 import { getCurrentURL, hasParam, getURLParam } from '../../utils';
+import Instructions from '../Instructions';
 
-//AppSync endpoint settings
-const myAppConfig = {
-  "aws_appsync_graphqlEndpoint": "https://2dh4qsc66bgkle7lp2epzugrtq.appsync-api.us-east-1.amazonaws.com/graphql",
-  "aws_appsync_region": "us-east-1",
-  "aws_appsync_authenticationType": "API_KEY",
-  "aws_appsync_apiKey": "da2-7fx77bogirgylbt2glfiz6ayly",
-};
-
-Amplify.configure(myAppConfig);
+Amplify.configure(awsconfig);
 
 const Lobby = () => {
   const [send, setSend] = useState("");
@@ -69,7 +63,6 @@ const Lobby = () => {
       await API.graphql(
         graphqlOperation(mutations.publish2channel, { name: channel, data: JSON.stringify({ ...data, readyToPlay: true }) })
       );
-      debugger;
       navigate(`/playing/player1/${data.player1}/player2/${data.player2}/rounds/${data.rounds}/match/${channel}/isFromPlayer1/1`,)
     }
   }, [startGame])
@@ -80,7 +73,6 @@ const Lobby = () => {
       graphqlOperation(subscriptions.subscribe2channel, { name: channel })
     ).subscribe({
       next: ({ provider, value }) => {
-        debugger;
         setReceived(value.data.subscribe2channel.data);
       },
       error: (error) => console.warn(error),
@@ -98,7 +90,6 @@ const Lobby = () => {
   }
 
   if (!startGame && data.secondPlayerJoined) {
-    debugger;
     return (
       <Match
         setStartGame={setStartGame}
@@ -109,10 +100,10 @@ const Lobby = () => {
     )
   }
 
-
   return (
-    <>
-      <h3 class="h3">Lobby</h3>
+    <div className='d-flex flex-column'>
+      <h3 className="h3">Lobby</h3>
+      <Instructions />
       {!startGame && matchURL && (
         <Alert variant="success">
           <Alert.Heading>Match created successfully</Alert.Heading>
@@ -124,10 +115,9 @@ const Lobby = () => {
           setChannel={setChannel}
           handleSubmit={handleSubmit}
           setSend={setSend}
-        />)}
-      <p>Subscribed/Listening to channel "{channel}"...</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </>
+        />
+      )}
+    </div>
   )
 }
 

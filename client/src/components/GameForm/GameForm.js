@@ -8,7 +8,7 @@ const GameForm = ({ handleSubmit, setSend, setChannel }) => {
   const TEXT_BUTTON = matchId ? 'Join to match' : 'Create match'
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="w-25" onSubmit={handleSubmit}>
       <Form.Group controlId="formEmail">
         <Form.Label id="nickname">Nickname</Form.Label>
         <Form.Control
@@ -30,7 +30,7 @@ const GameForm = ({ handleSubmit, setSend, setChannel }) => {
           />
         </Form.Group>
       )}
-      <Form.Group controlId="formMatchID">
+      <Form.Group className="mb-4" controlId="formMatchID">
         <Form.Label id="matchId">Game ID</Form.Label>
         <Form.Control
           placeholder='141.12'

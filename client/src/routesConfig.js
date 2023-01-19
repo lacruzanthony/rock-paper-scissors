@@ -1,6 +1,7 @@
 import Lobby from "./components/Lobby";
 import Layout from "./components/Layout";
 import ErrorPage from "./components/ErrorPage";
+import ComingSoon from "./components/ComingSoon";
 import Match from "./components/Match";
 import GameForm from "./components/GameForm";
 import RockPaperSccissors from "./components/RockPaperSccissors";
@@ -14,6 +15,10 @@ const routesConfig = [
       {
         path: "/",
         element: <Lobby />,
+      },
+      {
+        path: "/history",
+        element: <ComingSoon />,
       },
       {
         path: "match/:matchId/player1/:player1/rounds/:rounds",
