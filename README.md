@@ -5,7 +5,10 @@ This is an implementation of a simple real-time API based on WebSockets where cl
 
 <br/>
 <br/>
-**Export schema**: https://main.d5l3exq1owxw5.amplifyapp.com/
+<br/>
+
+URL of the published version: https://main.d5l3exq1owxw5.amplifyapp.com/
+
 <br/>
 The published version has seven days of availability. If the game doesn't work as expected, please reach out to update the API_KEY in my AWS account!
 <br/>
