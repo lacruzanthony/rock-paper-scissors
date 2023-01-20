@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, createSearchParams } from 'react-router-dom';
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import awsconfig from "../../amplifyConfig"
 import * as subscriptions from "../../graphql/subscriptions"; //codegen generated code
 import * as mutations from "../../graphql/mutations"; //codegen generated code
 import * as queries from "../../graphql/queries"; //codegen generated code
@@ -12,6 +11,14 @@ import GameForm from "../GameForm";
 import RockPaperSccissors from '../RockPaperSccissors';
 import { getCurrentURL, hasParam, getURLParam } from '../../utils';
 import Instructions from '../Instructions';
+
+
+const awsconfig = {
+  "aws_appsync_graphqlEndpoint": process.env.REACT_APP_APPSYNC_GRAPHQLENDPOINT,
+  "aws_appsync_region": process.env.REACT_APP_APPSYNC_REGION,
+  "aws_appsync_authenticationType": process.env.REACT_APP_APPSYNC_AUTHENTICATIONTYPE,
+  "aws_appsync_apiKey": process.env.REACT_APP_APPSYNC_APIKEY
+}
 
 Amplify.configure(awsconfig);
 
