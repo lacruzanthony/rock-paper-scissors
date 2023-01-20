@@ -24,13 +24,13 @@ The GraphQL API is defined in code where a GraphQL schema and API definition is 
 1. Clone the project to your local working directory:
 
    ```sh
-   git clone https://github.com/awsed/simpleWSAPI
+   git clone https://github.com/awsed/rock-paper-scissors
    ```
 
 2. Change the working directory to:
 
    ```sh
-   cd simpleWSAPI/cdk
+   cd rock-paper-scissors/cdk
    ```
 
 3. Install the project dependencies:
@@ -60,23 +60,26 @@ The GraphQL API is defined in code where a GraphQL schema and API definition is 
    ```sh
    npm install
    ```
-3. Open the file `src/App.js` and update the [AppSync API congifuration details](https://github.com/awsed/simpleWSAPI/blob/68bc0846dc2edb5e13a75767a060153e37ceeaee/client/src/App.js#L9) based on the output of the previous `cdk deploy`.
+3. Create the `.env` file at the same level as `package.json`:
 
-4. Define a [name for your channel](https://github.com/awsed/simpleWSAPI/blob/68bc0846dc2edb5e13a75767a060153e37ceeaee/client/src/App.js#L22), as an optional step.
+```sh
+touch rock-paper-scissors/client/.env
+```
+1. Open the file `.env.sample` copy and paste its content into [.env file](https://github.com/lacruzanthony/rock-paper-scissors/blob/main/client/src/components/Lobby/Lobby.js#16) based on the output of the previous `cdk deploy`. Remember to add the REACT_APP_ prefix to each variable.
 
-5. Generate the necessary code to interact with the API using the [Amplify CodeGen](https://docs.amplify.aws/cli/graphql-transformer/codegen/) with the API ID output of the previous `cdk deploy`. There's no need to create an Amplify CLI project, however you'll need to download the API schema from the [AWS Appsync Console](https://console.aws.amazon.com/appsync/home). Select the API `WS-API` in your account and, in the Schema section, select **Export schema**. Download and copy the schema file to the root of the `/client` folder, where you need to execute the following command accepting all defaults:
+2. Generate the necessary code to interact with the API using the [Amplify CodeGen](https://docs.amplify.aws/cli/graphql-transformer/codegen/) with the API ID output of the previous `cdk deploy`. There's no need to create an Amplify CLI project, however you'll need to download the API schema from the [AWS Appsync Console](https://console.aws.amazon.com/appsync/home). Select the API `WS-API` in your account and, in the Schema section, select **Export schema**. Download and copy the schema file to the root of the `/client` folder, where you need to execute the following command accepting all defaults:
 
    ```sh
    amplify add codegen --apiId xxxxxxxxxxxxxxxxxxxxxx
    ```
 
-6. Execute the application and access it from multiple browser tabs/windows at http://localhost:3000 :
+3. Execute the application and access it from multiple browser tabs/windows at http://localhost:3000 :
 
     ```bash
     npm start
     ```
 
-7. Send any valid JSON payload from one client and get it broadcasted in all browser windows. Since AWS AppSync automatically scales to demand, you can have thousands of clients broadcasting JSON data. You can also have multiple [channels](https://github.com/awsed/simpleWSAPI/blob/68bc0846dc2edb5e13a75767a060153e37ceeaee/client/src/App.js#L22) defined in different instances of the clients and confirm only clients subscribed to specific channels receive the JSON data. 
+4. Follow the instructions from the game!. 
 <br/>
 <br/>
 
