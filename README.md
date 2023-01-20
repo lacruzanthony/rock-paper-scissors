@@ -5,6 +5,12 @@ This is an implementation of a simple real-time API based on WebSockets where cl
 
 <br/>
 <br/>
+**Export schema**: https://main.d5l3exq1owxw5.amplifyapp.com/
+<br/>
+The published version has seven days of availability. If the game doesn't work as expected, please reach out to update the API_KEY in my AWS account!
+<br/>
+<br/>
+
 
 The GraphQL API is defined in code where a GraphQL schema and API definition is generated [programatically](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-appsync-readme.html#code-first-schema). Client code is also automatically generated. Hand coding GraphQL schema, queries, mutations, subscriptions is not required. If there's no need to leverage the built-in GraphQL strongly typed system, this pattern allows to send any data to connected/subscribed clients as long as it's in a valid JSON format.
 <br/>
