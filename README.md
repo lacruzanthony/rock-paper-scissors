@@ -4,7 +4,7 @@
 This is an implementation of a simple real-time API based on WebSockets where clients are subscribed to a specific channel and any JSON data can be pushed automatically to clients listening/subscribed to the channel. Clients define the channel they're subscribed to and there can be as many channels as required. Connections, scalability, fan-out and broadcasting are all automatically handled by the API.
 <br/>
 <br/>
-**URL of the published version**: https://main.d5l3exq1owxw5.amplifyapp.com/
+__URL of the published version__:https://main.d5l3exq1owxw5.amplifyapp.com/
 <br/>
 The published version has seven days of availability. If the game doesn't work as expected, please reach out to update the API_KEY in my AWS account!
 
