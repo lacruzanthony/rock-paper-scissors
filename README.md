@@ -83,4 +83,5 @@ touch rock-paper-scissors/client/.env
 <br/>
 <br/>
 
-![Screnshot](simple-wsapi.gif)
+![Part 1](Part_1.gif)
+![Part 2](Part_2.gif)
