@@ -5,6 +5,7 @@ This is an implementation of a simple real-time API based on WebSockets where cl
 
 <br/>
 <br/>
+<br/>
 
 URL of the published version: https://main.d5l3exq1owxw5.amplifyapp.com/
 
