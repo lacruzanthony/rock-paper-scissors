@@ -19,6 +19,7 @@ const RockPaperScissors = () => {
   const [victories, setVictories] = useState({ [player1]: 0, [player2]: 0 });
 
   const currentPlayer = () => isFromPlayer1 ? player1 : player2
+  const opponentPlayer = () => !isFromPlayer1 ? player1 : player2
 
   const determineWinner = async (yourChoice, opponentChoice) => {
     const choices = {
@@ -39,6 +40,8 @@ const RockPaperScissors = () => {
       victories[winner]++
     } else if (choices[opponentChoice] === yourChoice) {
       result = "you lose (╯°□°）╯︵ ┻━┻";
+      winner = opponentPlayer()
+      victories[winner]++
     }
     setResult(`${result}`);
     await API.graphql(
@@ -62,6 +65,7 @@ const RockPaperScissors = () => {
         if (dataReceived.player && dataReceived.player !== currentPlayer()) {
           setOpponentChoice(dataReceived.choice)
         }
+
         if (dataReceived.resetMatch) {
           setLocalRounds(1)
           setChoice('')
@@ -142,10 +146,10 @@ const RockPaperScissors = () => {
       <h3 className="h3">Hey {currentPlayer()}, time to play! Select your move and waits for your oponnet movement.</h3>
       <p><b>Round: {localRounds > rounds ? rounds : localRounds} of {rounds}</b></p>
       {showBestOfTheMatch ? <BestOfTheMatch data={data} onClickHandlerReset={onClickHandlerReset} isPlayer1={currentPlayer() === player1} player1={player1} player2={player2} /> : <RockPaperSccissorsChoice />}
-      <p>You move: {choice}</p>
+      <p>Your move: {choice}</p>
       <p>Opponent move: {oponnentChoice && choice ? oponnentChoice : null}</p>
       <p>The result of the round is: {result}</p>
-      {result && data.readyToNextRound && isFromPlayer1 && localRounds < parseInt(rounds) && <button onClick={() => nextRound()}>Next round</button>}
+      {result && data.readyToNextRound && isFromPlayer1 && localRounds < parseInt(rounds) && <Button variant="outline-dark" onClick={() => nextRound()}>Next round</Button>}
     </>
   );
 };
