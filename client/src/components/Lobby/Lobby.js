@@ -114,7 +114,7 @@ const Lobby = () => {
       {!startGame && matchURL && (
         <Alert variant="success">
           <Alert.Heading>Match created successfully</Alert.Heading>
-          <Alert.Link href={matchURL}>{matchURL}</Alert.Link>
+          <Alert.Link target="_blank" href={matchURL}>{matchURL}</Alert.Link>
         </Alert>
       )}
       {!data.secondPlayerJoined && !startGame && (
